@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2021 at 08:55 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Waktu pembuatan: 09 Agu 2021 pada 10.17
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `divisi`
+-- Struktur dari tabel `divisi`
 --
 
 CREATE TABLE `divisi` (
@@ -36,7 +36,7 @@ CREATE TABLE `divisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `divisi`
+-- Dumping data untuk tabel `divisi`
 --
 
 INSERT INTO `divisi` (`id_divisi`, `id_instansi`, `nama_divisi`, `deskripsi_divisi`, `telp_divisi`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `divisi` (`id_divisi`, `id_instansi`, `nama_divisi`, `deskripsi_divi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `instansi`
+-- Struktur dari tabel `instansi`
 --
 
 CREATE TABLE `instansi` (
@@ -63,7 +63,7 @@ CREATE TABLE `instansi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `instansi`
+-- Dumping data untuk tabel `instansi`
 --
 
 INSERT INTO `instansi` (`id_instansi`, `nama_instansi`, `alamat`, `deskripsi_instansi`, `email`, `telp`, `logo`, `tipe_logo`, `status`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `instansi` (`id_instansi`, `nama_instansi`, `alamat`, `deskripsi_ins
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kegiatan`
+-- Struktur dari tabel `kegiatan`
 --
 
 CREATE TABLE `kegiatan` (
@@ -87,7 +87,7 @@ CREATE TABLE `kegiatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kegiatan`
+-- Dumping data untuk tabel `kegiatan`
 --
 
 INSERT INTO `kegiatan` (`id_kegiatan`, `id_user`, `tanggal_kegiatan`, `deskripsi_kegiatan`, `foto`, `tipe_foto`) VALUES
@@ -110,7 +110,7 @@ INSERT INTO `kegiatan` (`id_kegiatan`, `id_user`, `tanggal_kegiatan`, `deskripsi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -124,7 +124,7 @@ CREATE TABLE `pengumuman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pengumuman`
+-- Dumping data untuk tabel `pengumuman`
 --
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `id_instansi`, `tanggal_pengumuman`, `judul`, `isi`, `foto`, `tipe_foto`) VALUES
@@ -137,7 +137,7 @@ INSERT INTO `pengumuman` (`id_pengumuman`, `id_instansi`, `tanggal_pengumuman`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -155,7 +155,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `nip`, `nama_user`, `alamat`, `tanggal_registrasi`, `foto`, `tipe_foto`, `level`, `status`) VALUES
@@ -176,7 +176,7 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `nip`, `nama_user`, `alamat`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_detail`
+-- Struktur dari tabel `user_detail`
 --
 
 CREATE TABLE `user_detail` (
@@ -188,7 +188,7 @@ CREATE TABLE `user_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user_detail`
+-- Dumping data untuk tabel `user_detail`
 --
 
 INSERT INTO `user_detail` (`id_user`, `id_instansi`, `id_divisi`, `periode_mulai`, `periode_selesai`) VALUES
@@ -200,7 +200,7 @@ INSERT INTO `user_detail` (`id_user`, `id_instansi`, `id_divisi`, `periode_mulai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_instansi_detail`
+-- Struktur dari tabel `user_instansi_detail`
 --
 
 CREATE TABLE `user_instansi_detail` (
@@ -209,7 +209,7 @@ CREATE TABLE `user_instansi_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user_instansi_detail`
+-- Dumping data untuk tabel `user_instansi_detail`
 --
 
 INSERT INTO `user_instansi_detail` (`id_user`, `id_instansi`) VALUES
@@ -221,40 +221,40 @@ INSERT INTO `user_instansi_detail` (`id_user`, `id_instansi`) VALUES
 --
 
 --
--- Indexes for table `divisi`
+-- Indeks untuk tabel `divisi`
 --
 ALTER TABLE `divisi`
   ADD PRIMARY KEY (`id_divisi`),
   ADD KEY `fk_divisi_id_instansi` (`id_instansi`);
 
 --
--- Indexes for table `instansi`
+-- Indeks untuk tabel `instansi`
 --
 ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id_instansi`);
 
 --
--- Indexes for table `kegiatan`
+-- Indeks untuk tabel `kegiatan`
 --
 ALTER TABLE `kegiatan`
   ADD PRIMARY KEY (`id_kegiatan`),
   ADD KEY `fk_id_user` (`id_user`);
 
 --
--- Indexes for table `pengumuman`
+-- Indeks untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD PRIMARY KEY (`id_pengumuman`),
   ADD KEY `fk_pengumuman_id_instansi` (`id_instansi`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `user_detail`
+-- Indeks untuk tabel `user_detail`
 --
 ALTER TABLE `user_detail`
   ADD KEY `fk_user_detail_id_instansi` (`id_instansi`),
@@ -262,70 +262,70 @@ ALTER TABLE `user_detail`
   ADD KEY `fk_user_detail_id_user` (`id_user`);
 
 --
--- Indexes for table `user_instansi_detail`
+-- Indeks untuk tabel `user_instansi_detail`
 --
 ALTER TABLE `user_instansi_detail`
   ADD KEY `fk_user_instansi_detail_id_user` (`id_user`),
   ADD KEY `fk_user_instansi_detail_id_instansi` (`id_instansi`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `divisi`
+-- AUTO_INCREMENT untuk tabel `divisi`
 --
 ALTER TABLE `divisi`
   MODIFY `id_divisi` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `instansi`
+-- AUTO_INCREMENT untuk tabel `instansi`
 --
 ALTER TABLE `instansi`
   MODIFY `id_instansi` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT for table `kegiatan`
+-- AUTO_INCREMENT untuk tabel `kegiatan`
 --
 ALTER TABLE `kegiatan`
   MODIFY `id_kegiatan` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `pengumuman`
+-- AUTO_INCREMENT untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   MODIFY `id_pengumuman` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_user` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `divisi`
+-- Ketidakleluasaan untuk tabel `divisi`
 --
 ALTER TABLE `divisi`
   ADD CONSTRAINT `fk_divisi_id_instansi` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id_instansi`);
 
 --
--- Constraints for table `kegiatan`
+-- Ketidakleluasaan untuk tabel `kegiatan`
 --
 ALTER TABLE `kegiatan`
   ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `pengumuman`
+-- Ketidakleluasaan untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD CONSTRAINT `fk_pengumuman_id_instansi` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id_instansi`);
 
 --
--- Constraints for table `user_detail`
+-- Ketidakleluasaan untuk tabel `user_detail`
 --
 ALTER TABLE `user_detail`
   ADD CONSTRAINT `fk_user_detail_id_divisi` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id_divisi`),
@@ -333,7 +333,7 @@ ALTER TABLE `user_detail`
   ADD CONSTRAINT `fk_user_detail_id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `user_instansi_detail`
+-- Ketidakleluasaan untuk tabel `user_instansi_detail`
 --
 ALTER TABLE `user_instansi_detail`
   ADD CONSTRAINT `fk_user_instansi_detail_id_instansi` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id_instansi`),
